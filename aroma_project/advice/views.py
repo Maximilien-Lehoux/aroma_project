@@ -3,6 +3,5 @@ from django.shortcuts import render
 
 
 def index(request):
-    message = "Salut tout le monde !"
-    return HttpResponse(message)
+    return render(request, "advice/index.html")
 
