@@ -21,8 +21,9 @@ from django.conf.urls import include, url
 from advice import views
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('admin/', admin.site.urls),
+    url(r'^$', views.index),
+    path('advice/', include('advice.url')),
+    path('admin_content/', admin.site.urls)
 ]
 
 if settings.DEBUG:

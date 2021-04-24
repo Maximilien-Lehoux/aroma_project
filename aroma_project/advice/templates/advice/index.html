@@ -69,6 +69,21 @@
                 <!-- Portfolio Section Heading-->
                 <h3 class=" text-center text-secondary mb-0">Cliquer sur la partie que vous souhaitez soigner.</h3>
 
+                <!-- drop-down list to select a pathology-->
+                    <p class=" text-center text-secondary mb-0">
+                        <form  action="{% url 'advice:index' %}" method="post">
+                        {% csrf_token %}
+                            <select name="pathology_choose">
+                                 {% for patology in patologies %}
+                                        <option>
+                                            {{ patology.name }}
+                                        </option>
+                                 {% endfor %}
+                            </select>
+                            <input type="submit" value="choisir"  class="btn btn-success save_btn">
+                        </form>
+                    </p>
+
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
@@ -99,11 +114,8 @@
                             </div>
                             <img class="img-fluid" src="{% static 'advice/img/portfolio/game.png' %}" alt="" />
                         </div>
-                    </div>
+                    </div >
                     <!-- Portfolio Item 5-->
-
-                    <!-- Portfolio Item 6-->
-
                 </div>
             </div>
         </section>

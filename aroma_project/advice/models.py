@@ -10,11 +10,21 @@ class Pathology(models.Model):
 class EssentialOil(models.Model):
     """creation of the essential oils table"""
     name = models.CharField(max_length=200)
-    curative_effects = models.CharField(max_length=200)
-    side_effects = models.CharField(max_length=1000)
     image = models.ImageField(upload_to="essential_oils")
     pathology = models.ManyToManyField(
         Pathology, related_name='essential_oil', blank=True)
+
+
+class CurativeEffect(models.Model):
+    name = models.CharField(max_length=200)
+    essential_oil = models.ManyToManyField(
+        EssentialOil, related_name="curative_effect", blank=True)
+
+
+class SideEffect(models.Model):
+    name = models.CharField(max_length=200)
+    essential_oil = models.ManyToManyField(
+        EssentialOil, related_name="side_effect", blank=True)
 
 
 class Contraindication(models.Model):
