@@ -1,10 +1,23 @@
 from django.db import models
 
 
+class VegetableOil(models.Model):
+    name = models.CharField(max_length=200)
+    type = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="essential_oils")
+
+    def __str__(self):
+        return self.name
+
+
 class Pathology(models.Model):
     """creation of the pathologies table"""
     name = models.CharField(max_length=200)
     zone = models.CharField(max_length=200)
+    # vegetable_oil = models.ForeignKey(VegetableOil, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class EssentialOil(models.Model):
@@ -14,17 +27,26 @@ class EssentialOil(models.Model):
     pathology = models.ManyToManyField(
         Pathology, related_name='essential_oil', blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class CurativeEffect(models.Model):
     name = models.CharField(max_length=200)
     essential_oil = models.ManyToManyField(
         EssentialOil, related_name="curative_effect", blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class SideEffect(models.Model):
     name = models.CharField(max_length=200)
     essential_oil = models.ManyToManyField(
         EssentialOil, related_name="side_effect", blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Contraindication(models.Model):
@@ -33,19 +55,32 @@ class Contraindication(models.Model):
     essential_oil = models.ManyToManyField(
         EssentialOil, related_name="contraindication", blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Way(models.Model):
     name = models.CharField(max_length=200)
     essential_oil = models.ManyToManyField(
         EssentialOil, related_name="way", blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class MethodOfUse(models.Model):
+    name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
     way = models.OneToOneField(Way, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class Legislation(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.name
 

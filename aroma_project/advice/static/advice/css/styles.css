@@ -10238,3 +10238,18 @@ form .row:first-child .floating-label-form-group {
 .copyright {
   background-color: #1a252f;
 }
+
+.line_space{
+    height : 250px;
+}
+
+.image_he{
+    height : 200px;
+    width : auto;
+}
+
+.advice_pathology
+{
+    background-color : #008000;
+    color : white;
+    font-size : 40px;

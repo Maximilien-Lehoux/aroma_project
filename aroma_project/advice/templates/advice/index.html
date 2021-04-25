@@ -38,12 +38,12 @@
 
                 <!-- drop-down list to select a pathology-->
                     <p class=" text-center text-secondary mb-0">
-                        <form  action="{% url 'advice:index' %}" method="post">
+                        <form  action="{% url 'advice:advice_he' %}" method="post">
                         {% csrf_token %}
                             <select name="pathology_choose">
-                                 {% for patology in patologies %}
+                                 {% for pathology in pathologies %}
                                         <option>
-                                            {{ patology.name }}
+                                            {{ pathology.name }}
                                         </option>
                                  {% endfor %}
                             </select>
