@@ -37,7 +37,7 @@
                 <h3 class=" text-center text-secondary mb-0">Cliquer sur la partie que vous souhaitez soigner.</h3>
 
                 <!-- drop-down list to select a pathology-->
-                    <p class=" text-center text-secondary mb-0">
+
                         <form  action="{% url 'advice:advice_he' %}" method="post">
                         {% csrf_token %}
                             <select name="pathology_choose">
@@ -47,9 +47,10 @@
                                         </option>
                                  {% endfor %}
                             </select>
+
                             <input type="submit" value="choisir"  class="btn btn-success save_btn">
                         </form>
-                    </p>
+
 
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">

@@ -14,7 +14,7 @@ class Pathology(models.Model):
     """creation of the pathologies table"""
     name = models.CharField(max_length=200)
     zone = models.CharField(max_length=200)
-    # vegetable_oil = models.ForeignKey(VegetableOil, on_delete=models.CASCADE)
+    vegetable_oil = models.ForeignKey(VegetableOil, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -63,6 +63,8 @@ class Way(models.Model):
     name = models.CharField(max_length=200)
     essential_oil = models.ManyToManyField(
         EssentialOil, related_name="way", blank=True)
+    pathology = models.ManyToManyField(
+        Pathology, related_name="way", blank=True)
 
     def __str__(self):
         return self.name
@@ -72,6 +74,17 @@ class MethodOfUse(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
     way = models.OneToOneField(Way, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    number_he = models.IntegerField()
+    amount_he = models.CharField(max_length=200)
+    mount_hv = models.CharField(max_length=200)
+    way = models.ForeignKey(Way, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

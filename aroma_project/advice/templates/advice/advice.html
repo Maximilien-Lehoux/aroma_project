@@ -8,29 +8,47 @@
     <div class="container-fluid">
         <div class="row align-items-center justify-content-center text-center">
             <div class="col-lg-8">
+
                 <p>{{ pathology_choose.name }}</p>
+
+                <form action="{% url 'advice:advice_he' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" class="form-control searchInput" value="{{ pathology_choose.name }}" name="pathology_choose">
+                    <select name="way_choose" id="way_choose">
+                            <option>
+                                {{ way_choose.name }}
+                            </option>
+                            <option>
+                            </option>
+                        {% for way in ways %}
+                            <option>
+                                {{ way.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="choisir"  class="btn btn-success save_btn">
+                </form>
 
             </div>
         </div>
     </div>
 </section>
+
+
 <section>
     <div class="container-fluid">
         <div class="row">
-
             {% for essential_oil in essentials_oils %}
                 <div class="col-sm-3 text-center item_border">
-
                         <img class="img-responsive image_he" src="{{ essential_oil.image.url }}" alt="{{ essential_oil.name }}">
-
                         <h5>{{ essential_oil.name }}</h5>
-
-
                 </div>
-
-
             {% endfor %}
 
+                <div class="col-sm-3 text-center item_border">
+                        <img class="img-responsive image_he" src="{{ vegetable_oil.image.url }}" alt="{{ vegetable_oil.name }}">
+                        <h5>{{ vegetable_oil.name }}</h5>
+                </div>
         </div>
     </div>
 </section>
