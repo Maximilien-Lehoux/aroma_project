@@ -12,7 +12,7 @@ class DataBase:
         insomnia = Pathology(name="insomnie", zone="general")
         lavender = EssentialOil(
             name="lavande officinale",
-            image="static/advice/img/essential_oil/lavande.png")
+            image="static/user/img/essential_oil/lavande.png")
 
         insomnia.save()
         lavender.save()

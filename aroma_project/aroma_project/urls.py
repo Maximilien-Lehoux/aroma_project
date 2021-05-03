@@ -25,7 +25,8 @@ from advice import views
 urlpatterns = [
     url(r'^$', views.index),
     path('advice/', include('advice.url')),
-    path('admin_content/', admin.site.urls)
+    path('user/', include('user.urls')),
+    path('admin_content/', admin.site.urls),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

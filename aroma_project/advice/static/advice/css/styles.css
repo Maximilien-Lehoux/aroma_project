@@ -10240,12 +10240,16 @@ form .row:first-child .floating-label-form-group {
 }
 
 .line_space{
-    height : 250px;
+    height : 100px;
 }
 
 .image_he{
-    height : 200px;
-    width : auto;
+    position: relative;
+    height: 150px;
+    width: auto;
+    margin: 0px 0px;
+    border: 1px solid dark;
+    border-radius: 10px;
 }
 
 .advice_pathology
@@ -10253,3 +10257,16 @@ form .row:first-child .floating-label-form-group {
     background-color : #008000;
     color : white;
     font-size : 40px;
+}
+
+.text_upper{
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+

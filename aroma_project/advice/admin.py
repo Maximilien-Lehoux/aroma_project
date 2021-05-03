@@ -1,7 +1,8 @@
 from django.contrib import admin
 
 from .models import Pathology, EssentialOil, CurativeEffect, Legislation, \
-    SideEffect, MethodOfUse, Way, Contraindication, VegetableOil, Recipe
+    SideEffect, MethodOfUse, Way, Contraindication, VegetableOil, Recipe, \
+    NeutralProduct
 
 admin.site.register(Pathology)
 admin.site.register(EssentialOil)
@@ -13,4 +14,5 @@ admin.site.register(Way)
 admin.site.register(Contraindication)
 admin.site.register(VegetableOil)
 admin.site.register(Recipe)
+admin.site.register(NeutralProduct)
 

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'advice.apps.AdviceConfig',
+    'user.apps.UserConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,6 +140,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_ACCESS_KEY_ID = 'AKIAXH4UXP3SE4MLVRMD'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_SES_REGION_NAME = "us-east-2" #(ex: us-east-2)
+AWS_SES_REGION_ENDPOINT ='email.us-east-2.amazonaws.com' #(ex: email.us-east-2.amazonaws.com)
 
 
 

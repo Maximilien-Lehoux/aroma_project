@@ -10,6 +10,14 @@ class VegetableOil(models.Model):
         return self.name
 
 
+class NeutralProduct(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="neutral_product")
+
+    def __str__(self):
+        return self.name
+
+
 class Pathology(models.Model):
     """creation of the pathologies table"""
     name = models.CharField(max_length=200)
@@ -73,7 +81,7 @@ class Way(models.Model):
 class MethodOfUse(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
-    way = models.OneToOneField(Way, on_delete=models.CASCADE)
+    quantity = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
