@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath aroma_project aroma_project.wsgi
