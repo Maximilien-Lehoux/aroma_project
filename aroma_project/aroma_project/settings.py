@@ -146,6 +146,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
+FIXTURE_DIRS = ('/aroma_project/fixtures/',)
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
