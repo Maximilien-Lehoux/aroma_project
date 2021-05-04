@@ -170,12 +170,6 @@ if os.environ.get('ENV') == 'PRODUCTION':
         os.path.join(PROJECT_ROOT, 'static'),
     )
 
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-    MEDIA_URL = '/media/'
-
-    FIXTURE_DIRS = ('/aroma_project/fixtures/',)
-
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
