@@ -178,4 +178,4 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
 _locale._getdefaultlocale = (lambda * args: ['en_US', 'utf8'])
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
