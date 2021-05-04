@@ -91,10 +91,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 text-center">
-                    <h4 > Contre-indications </h4>
+                    <h4 class="contraindications"> Contre-indications </h4>
                     <ul class="">
                         {% for contraindication in contraindications %}
-                            <li>{{ contraindication.name }}</li>
+                            <li class="contraindications">{{ contraindication.name }}</li>
                         {% endfor %}
                     </ul>
                 </div>

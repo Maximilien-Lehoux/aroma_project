@@ -10263,6 +10263,11 @@ form .row:first-child .floating-label-form-group {
     text-transform: uppercase;
 }
 
+.contraindications
+{
+ color: red;
+}
+
 
 
 

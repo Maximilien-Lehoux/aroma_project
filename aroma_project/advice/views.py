@@ -83,9 +83,9 @@ def advice_he(request):
         amount = Recipe.objects.filter(
             way__name=way_choose.name).get(number_he=number_he)
         sides_effects = SideEffect.objects.filter(
-            essential_oil__in=essentials_oils)
+            essential_oil__in=essentials_oils).distinct()
         contraindication = Contraindication.objects.filter(
-            essential_oil__in=essentials_oils)
+            essential_oil__in=essentials_oils).distinct()
 
         context = {
             "pathologies": pathologies,
