@@ -9,6 +9,7 @@ from django.http import HttpResponse
 
 
 def contact(request):
+    """contact form that sends the message entered by the user"""
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():

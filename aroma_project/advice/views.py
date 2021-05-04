@@ -12,6 +12,7 @@ from .models import Pathology, EssentialOil, VegetableOil, Recipe, Way, \
 
 
 def index(request):
+    """receives "true" when data bar searches for and displays index"""
     pathologies = Pathology.objects.all().order_by('name')
     ways = Way.objects.all()
 
@@ -25,6 +26,7 @@ def index(request):
 
 
 def advice_he(request):
+    """Displays advices he and user's choices"""
     pathology_choose = request.POST.get("pathology_choose")
     pathology_choose = Pathology.objects.get(name=pathology_choose)
     pathologies = Pathology.objects.all().order_by('name')
