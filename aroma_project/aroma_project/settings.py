@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 import _locale
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -169,6 +170,12 @@ if os.environ.get('ENV') == 'PRODUCTION':
         os.path.join(PROJECT_ROOT, 'static'),
     )
 
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+    MEDIA_URL = '/media/'
+
+    FIXTURE_DIRS = ('/aroma_project/fixtures/',)
+
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -176,3 +183,5 @@ if os.environ.get('ENV') == 'PRODUCTION':
     DATABASES['default'].update(db_from_env)
 
 _locale._getdefaultlocale = (lambda * args: ['en_US', 'utf8'])
+
+django_heroku.settings(locals())
