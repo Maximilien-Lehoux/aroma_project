@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-^@=1&=fu74&3=+%tafbk@8)!o70#jhhz)^@315!ff0@!-)kv0x')
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
+    'django-insecure-^@=1&=fu74&3=+%tafbk@8)!o70#jhhz)^@315!ff0@!-)kv0x')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -153,8 +155,6 @@ FIXTURE_DIRS = ('/aroma_project/fixtures/',)
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = 'AKIAXH4UXP3SE4MLVRMD'
-AWS_SECRET_ACCESS_KEY = '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'
 AWS_SES_REGION_NAME = "us-east-2" #(ex: us-east-2)
 AWS_SES_REGION_ENDPOINT ='email.us-east-2.amazonaws.com' #(ex: email.us-east-2.amazonaws.com)
 
