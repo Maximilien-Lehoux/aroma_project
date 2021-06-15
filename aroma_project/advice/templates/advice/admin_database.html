@@ -1,0 +1,90 @@
+{% extends 'advice/base.html' %}
+
+{% block content %}
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Administrateur</h1>
+                <h4>Enregistrer une nouvelle pathology</h4>
+
+                    <form class="input-group-sm-mb-3 mx-auto" action="{% url 'advice:admin_database' %}" method="post">
+                        {% csrf_token %}
+
+                        <input type="text" class="form-control searchInput" placeholder="Pathology" name="pathology" id="pathology">
+                        <div class="line_space_form"></div>
+                        <input type="text" class="form-control searchInput" placeholder="Zone" name="zone">
+                        <div class="line_space_form"></div>
+
+                        <select name="vegetable_oil" class="custom-select bg-primary text-light" style="font-size:20px" >
+                            <option>
+                                Huile végétale
+                            </option>
+                            <option>
+                            </option>
+                                {% for vegetable_oil in vegetable_oils %}
+                            <option>
+                                    {{ vegetable_oil.name }}
+                            </option>
+                                {% endfor %}
+                        </select>
+
+                        <div class="line_space_form"></div>
+
+                        <select name="essential_oil1" class="custom-select bg-primary text-light" style="font-size:20px" >
+                            <option>
+                                Huile essentielle
+                            </option>
+                            <option>
+                            </option>
+                                {% for essential_oil in essential_oils %}
+                            <option>
+                                    {{ essential_oil.name }}
+                            </option>
+                                {% endfor %}
+                        </select>
+
+                        <div class="line_space_form"></div>
+
+                        <select name="essential_oil2" class="custom-select bg-primary text-light" style="font-size:20px" >
+                            <option>
+                                Huile essentielle
+                            </option>
+                            <option>
+                            </option>
+                                {% for essential_oil in essential_oils %}
+                            <option>
+                                    {{ essential_oil.name }}
+                            </option>
+                                {% endfor %}
+                        </select>
+
+                        <div class="line_space_form"></div>
+
+                        <select name="essential_oil3" class="custom-select bg-primary text-light" style="font-size:20px" >
+                            <option>
+                                Huile essentielle
+                            </option>
+                            <option>
+                            </option>
+                                {% for essential_oil in essential_oils %}
+                            <option>
+                                    {{ essential_oil.name }}
+                            </option>
+                                {% endfor %}
+                        </select>
+
+                        <div class="line_space_form"></div>
+
+                        <span class="input-group-btn">
+                            <input type="submit" value="Chercher"  class="btn btn-success">
+                        </span>
+                        <div class="line_space_form"></div>
+                    </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

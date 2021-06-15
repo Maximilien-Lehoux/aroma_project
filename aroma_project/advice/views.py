@@ -6,6 +6,8 @@ from django.http import JsonResponse
 from .form import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 from .models import Pathology, EssentialOil, VegetableOil, Recipe, Way, \
     NeutralProduct, MethodOfUse, SideEffect, Contraindication
@@ -110,3 +112,43 @@ def advice_he(request):
             "pathologies": pathologies,
         }
         return render(request, "advice/advice.html", context)
+
+
+def admin_database(request):
+    """receives "true" when data bar searches for and displays index"""
+    if request.user.is_authenticated and request.user.is_staff:
+
+        essential_oils = EssentialOil.objects.all().order_by('name')
+        vegetable_oils = VegetableOil.objects.all().order_by('name')
+
+        if request.method == 'POST':
+            pathology_name = request.POST.get("pathology")
+            zone = request.POST.get("zone")
+            vegetable_oil = request.POST.get("vegetable_oil")
+            essential_oil1 = request.POST.get("essential_oil1")
+            essential_oil2 = request.POST.get("essential_oil2")
+            essential_oil3 = request.POST.get("essential_oil3")
+
+            if Pathology.objects.filter(name=pathology_name).exists():
+                messages.error(request, "la pathologie existe")
+                print("nooooooon")
+                return redirect('advice:admin_database')
+
+            else:
+                print(pathology_name)
+                print(zone)
+                print(vegetable_oil)
+                print(essential_oil1)
+                print(essential_oil2)
+                print(essential_oil3)
+
+
+        context = {
+                "essential_oils": essential_oils,
+                "vegetable_oils": vegetable_oils
+        }
+
+        return render(request, "advice/admin_database.html", context)
+
+    else:
+        return redirect("advice:index")

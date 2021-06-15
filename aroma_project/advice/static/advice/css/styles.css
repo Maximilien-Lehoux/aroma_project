@@ -10243,6 +10243,10 @@ form .row:first-child .floating-label-form-group {
     height : 100px;
 }
 
+.line_space_form{
+    height : 30px;
+}
+
 .image_he{
     position: relative;
     height: 150px;
