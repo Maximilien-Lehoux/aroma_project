@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 
 from .models import Pathology, EssentialOil, VegetableOil, Recipe, Way, \
     NeutralProduct, MethodOfUse, SideEffect, Contraindication
+from .manager import AdviceManager, AdminManager
 
 
 def index(request):
@@ -36,73 +37,14 @@ def advice_he(request):
     way_choose = request.POST.get("way_choose")
 
     if request.method == "POST" and way_choose is not None:
-
         way_choose = Way.objects.get(name=way_choose)
 
-        if way_choose.name == "orale":
-            essentials_oils = EssentialOil.objects.filter(
-                pathology__name=pathology_choose.name).filter(
-                way__name=way_choose.name)[0:2]
+        advice_manager = AdviceManager()
+        context = advice_manager.get_context_route_condition(pathology_choose,
+                                                             way_choose,
+                                                             pathologies,
+                                                             ways)
 
-            vegetable_oil = NeutralProduct.objects.get(name="miel")
-            protocole = MethodOfUse.objects.get(name="orale")
-
-        elif way_choose.name == "bain":
-            essentials_oils = EssentialOil.objects.filter(
-                pathology__name=pathology_choose.name).filter(
-                way__name=way_choose.name)[0:1]
-
-            vegetable_oil = NeutralProduct.objects.get(name="gel douche")
-            protocole = MethodOfUse.objects.get(name="bain")
-
-        elif way_choose.name == "diffusion":
-            essentials_oils = EssentialOil.objects.filter(
-                pathology__name=pathology_choose.name).filter(
-                way__name=way_choose.name)
-
-            vegetable_oil = NeutralProduct.objects.get(name="alcool")
-            protocole = MethodOfUse.objects.get(name="diffusion")
-
-        elif way_choose.name == "Inhalation":
-            essentials_oils = EssentialOil.objects.filter(
-                pathology__name=pathology_choose.name).filter(
-                way__name=way_choose.name)
-
-            vegetable_oil = NeutralProduct.objects.get(name="bol d'eau")
-            protocole = MethodOfUse.objects.get(name="inhalation")
-
-        elif way_choose.name == "cutanée":
-            essentials_oils = EssentialOil.objects.filter(
-                pathology__name=pathology_choose.name).filter(
-                way__name=way_choose.name)
-
-            vegetable_oil = pathology_choose.vegetable_oil
-
-            if pathology_choose.zone == "general":
-                protocole = MethodOfUse.objects.get(name="cutanée générale")
-            else:
-                protocole = MethodOfUse.objects.get(name="cutanée")
-
-        number_he = essentials_oils.count()
-        amount = Recipe.objects.filter(
-            way__name=way_choose.name).get(number_he=number_he)
-        sides_effects = SideEffect.objects.filter(
-            essential_oil__in=essentials_oils).distinct()
-        contraindication = Contraindication.objects.filter(
-            essential_oil__in=essentials_oils).distinct()
-
-        context = {
-            "pathologies": pathologies,
-            "pathology_choose": pathology_choose,
-            "essentials_oils": essentials_oils,
-            "vegetable_oil": vegetable_oil,
-            "way_choose": way_choose,
-            "ways": ways,
-            "amount": amount,
-            "protocole": protocole,
-            "sides_effects": sides_effects,
-            "contraindications": contraindication,
-        }
         return render(request, "advice/advice.html", context)
 
     else:
@@ -129,19 +71,10 @@ def admin_database(request):
             essential_oil2 = request.POST.get("essential_oil2")
             essential_oil3 = request.POST.get("essential_oil3")
 
-            if Pathology.objects.filter(name=pathology_name).exists():
-                messages.error(request, "la pathologie existe")
-                print("nooooooon")
-                return redirect('advice:admin_database')
-
-            else:
-                print(pathology_name)
-                print(zone)
-                print(vegetable_oil)
-                print(essential_oil1)
-                print(essential_oil2)
-                print(essential_oil3)
-
+            admin_manager = AdminManager()
+            admin_manager.save_new_pathology(request, pathology_name, zone,
+                                  vegetable_oil, essential_oil1,
+                                  essential_oil2, essential_oil3)
 
         context = {
                 "essential_oils": essential_oils,
