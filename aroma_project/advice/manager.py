@@ -13,6 +13,7 @@ class AdviceManager:
     def get_context_route_condition(self, pathology_choose,
                                     way_choose, pathologies, ways):
         """Get context to display advices he and user's choices"""
+        essentials_oils = 1
         if way_choose.name == "orale":
             essentials_oils = EssentialOil.objects.filter(
                 pathology__name=pathology_choose.name).filter(

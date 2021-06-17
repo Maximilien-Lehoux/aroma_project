@@ -36,7 +36,7 @@ def advice_he(request):
     ways = pathology_choose.way.all()
     way_choose = request.POST.get("way_choose")
 
-    if request.method == "POST" and way_choose is not None:
+    if request.method == "POST" and way_choose is not None and way_choose != "":
         way_choose = Way.objects.get(name=way_choose)
 
         advice_manager = AdviceManager()
