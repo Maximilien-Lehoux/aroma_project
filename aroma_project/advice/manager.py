@@ -93,7 +93,6 @@ class AdminManager:
         """the administrator adds a new pathology"""
         if Pathology.objects.filter(name=pathology_name).exists():
             messages.error(request, "la pathologie existe")
-            print("nooooooon")
             return redirect('advice:admin_database')
 
         elif pathology_name == "" or \
@@ -118,12 +117,12 @@ class AdminManager:
 
             essential_oil1_db.pathology.add(new_pathology)
 
-            if essential_oil2 != "" or essential_oil2 != "Huile essentielle":
+            if essential_oil2 != "" and essential_oil2 != "Huile essentielle":
                 essential_oil2_db = EssentialOil.objects.get(
                     name=essential_oil2)
                 essential_oil2_db.pathology.add(new_pathology)
 
-            elif essential_oil3 != "" or essential_oil3 !="Huile essentielle":
+            elif essential_oil3 != "" and essential_oil3 != "Huile essentielle":
                 essential_oil3_db = EssentialOil.objects.get(
                     name=essential_oil3)
                 essential_oil3_db.pathology.add(new_pathology)
